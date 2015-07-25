@@ -8,6 +8,9 @@ tagline: Chase the Excellence, Success will follow you.
 你好，欢迎来到我在GitHub上的博客。  
 我是一只热爱编程的程序猿，不过现在仍然学艺不精，距离大牛还很远。  
 本博客还有[wordpress版](https://tec.hxlxz.com)，留言、互动可以去那里。  
+  
+## 置顶博文 ##
+[查错备忘录]({% post_url 2014-12-01-list-of-valid-errors %})  
 
 ## 我的博文 ##
 <ul class="posts">
