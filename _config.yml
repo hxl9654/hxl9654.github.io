@@ -14,8 +14,9 @@ author :
   name : 何相龙
   email : qwgg9654@gmail.com
   github : hxl9654
-  twitter : username
-  feedburner : feedname
+  wordpress : https://tec.hxlxz.com/
+  feed : rss.xml
+  mail : QWGG9654@gmail.com
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -25,7 +26,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://hxl9654.github.io
+production_url : https://hxl9654.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
