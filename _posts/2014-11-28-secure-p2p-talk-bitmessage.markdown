@@ -15,12 +15,14 @@ tags:
 - 开源
 - 软件介绍
 ---
-
+ 
 众所周知，现有的大部分的即时通讯软件和电子邮箱都是中心化的，而且大部分软件不能有效地加密。今天，我将介绍一种加密的、去中心化的P2P技术通信软件——比特信（Bit-message）。   
-## 一、下载与运行  
+
+## 一、下载与运行
 在https://bitmessage.org/wiki/Main_Page 下载相应版本的比特信，双击下载的文件即可运行比特信。如果出现安全警告，请选择允许。  
 [![btx (1)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-1-1024x563.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-1.png)   
-## 二、第一次运行  
+
+## 二、第一次运行
 [![btx (2)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-2.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-2.png)
 这是比特信的主界面，如果没有特殊情况，请选择现在连接。  
 要正常地使用比特信，你需要创建地址。切换到“您的身份”选项卡  
@@ -38,7 +40,8 @@ tags:
 [![btx (5)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-5.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-5.png)   
 默认，会生成8个地址，现在把这些地址给你的好友，他们就可以通过比特信给你发信息了！
 [![btx (6)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-6.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-6.png)   
-## 三、发送消息  
+
+## 三、发送消息
 [![btx (7)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-7.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-7.png)  
 在“1”处选择一个你的地址作为发送地址  
 在“2”处输入或粘贴你想发送消息到的地址  
@@ -52,9 +55,11 @@ tags:
 可以看到，我的消息已经发生成功，等待回执了。  
 [![btx (10)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-10.png)](https://tec.hxlxz.com/wp-content/uploads/2014/08/btx-10.png)  
 这是对方收到消息后的显示  
-## 四、接收消息  
+
+## 四、接收消息
 其实很简单，打开比特信，在收件箱界面就可以看到你的消息。  
-## 五、其他  
+
+## 五、其他
 其实，比特信的功能很强大，上述内容只是基本的应用，如果大家有兴趣，可以深入研究，也欢迎一起讨论、交流！我的比特信地址是BM-2cSmerJ4BMg5z8kvtKJqixUAyuDsZXnLJT
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)  
