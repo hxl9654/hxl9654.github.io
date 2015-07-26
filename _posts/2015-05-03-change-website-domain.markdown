@@ -20,9 +20,11 @@ tags:
 于是，搜索大法好，在网上搜索后得到以下答案（由于这个结果都烂大街了，再注明是哪里看到的也没啥意义）  
 在安装wordpress的数据库中执行以下SQL语句：  
 
->UPDATE wp_posts SET post_content = replace( post_content, 'OldURL','NewURL') ;  
->UPDATE wp_comments SET comment_content = replace(comment_content, 'OldURL', 'NewURL') ;  
-UPDATE wp_comments SET comment_author_url = replace(comment_author_url, >'OldURL', 'NewURL');  
+{% highlight sql %}
+UPDATE wp_posts SET post_content = replace( post_content, 'OldURL','NewURL') ;  
+UPDATE wp_comments SET comment_content = replace(comment_content, 'OldURL', 'NewURL') ;  
+UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'OldURL', 'NewURL');  
+{% endhighlight %}
 
 然后，这样搞了搞，发现没效果。突然想到我这个网站的前缀不是 wp_ ，修改后重新执行，搞定。  
 接着就是301重定向，google、百度提交域名更换信息啥的，没啥好说的。  
