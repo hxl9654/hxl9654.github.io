@@ -24,5 +24,5 @@ tags:
 [![echoiot](https://tec.hxlxz.com/wp-content/uploads/2015/03/echoiot.png)](https://tec.hxlxz.com/wp-content/uploads/2015/03/echoiot.png)   
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)  
-实验室网站搭好了 由 [何相龙](https://tec.hxlxz.com/?p=306) 创作，采用 [知识共享 署名-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-sa/4.0/)进行许可。  
+实验室网站搭好了 由 [何相龙]() 创作，采用 [知识共享 署名-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-sa/4.0/)进行许可。  
 [在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=306)

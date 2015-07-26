@@ -121,5 +121,5 @@ tags:
 好的，这篇流水帐完成了，有什么问题，欢迎交流。  
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)    
-树莓派初调记 由 [何相龙](https://tec.hxlxz.com/?p=351) 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+树莓派初调记 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
 [在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=351)

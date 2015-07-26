@@ -30,5 +30,5 @@ http://jingyan.baidu.com/article/f7ff0bfc7181492e27bb1360.html
 http://www.eoeandroid.com/thread-274556-1-1.html  
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
-github调教记 由 [何相龙](https://tec.hxlxz.com/?p=337) 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+github调教记 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
 [在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=337)
