@@ -1,0 +1,212 @@
+---
+author: hxl
+comments: true
+date: 2015-06-08 11:47:38+00:00
+layout: post
+slug: qqrobot
+title: QQ聊天机器人项目日志
+tagline: qqrobot
+wordpress_id: 765
+categories:
+- web
+- 技术之路
+- 计算机软件
+tags:
+- web
+- 软件
+- 项目
+---
+
+突发奇想，打算做个QQ聊天机器人。[Github](https://github.com/hxl9654/SmartQQ)
+
+### 6月7日
+网上各种查资料，找源码，结果发现并没有合适的，决定自己写。  
+参考[这篇文章](http://sayln.com/code/csharp-smartqq-beginning.html)开始编写，首先需要解决Http的get方法，于是，又一番搜索，决定使用[这个源码](http://www.itokit.com/2012/0721/74607.html)来进行改造。  
+总的来说，获取验证码这一步比较顺利，没啥纰漏。  
+
+### 6月8日  
+接着昨天的搞，在获取cookie中的verifysession时遇到了困难，这个要作为pt_verifysession参数在登录时提交。在不需要验证码登录的时候，这个参数会在请求是否需要验证码时获取到，而需要验证码时，则在验证码图片源码的cookie里。最后，使用这个方法成功。源网址找不到了。。  
+{% highlight csharp %}
+req.CookieContainer = new CookieContainer();
+res = (HttpWebResponse)req.GetResponse();
+ptvsession = res.Cookies["verifysession"].Value;
+{% endhighlight %}
+获取这个参数之后，继续编写，在生成加密密码的时候又遇到了困难。在网上各种搜索、尝试无果，最终在感谢QQBOT群群友杨小泡的热心帮助下，成功实现一次登录。具体代码，参见Github。  
+他提供的代码，需要依赖Jurassic库，将他添加入项目，然后使用using Jurassic，发现找不到这个命名空间。最终在[这篇文章](http://blog.csdn.net/zjianbo/article/details/8041253)的指导下在右侧工程目录添加Jurassic.dll文件的引用后，才正常工作。
+
+#### 饭后，开始做二次登录。  
+总的来说，比一次登录要顺利很多，但是[这个页面](http://sayln.com/code/csharp-smartqq-login.html)上的二次登录的介绍似乎已经过时，可以参考[这个页面](http://www.cnblogs.com/lianmin/p/4232879.html)的。  
+注意不要忘记设置Referer，否则会108错误。cookie中必须保存着p_skey，否则会103错误。
+在一次登录完成，得到长跳转链接，读取cookie的时候，注意需要指定读取cookie的URI为"http://web2.qq.com/"，否则程序会崩溃。  
+{% highlight csharp %}
+Uri uri = new Uri("http://web2.qq.com/");  
+ptwebqq = cookies.GetCookies(uri)["ptwebqq"].Value;
+{% endhighlight %}
+
+#### 长查询（心跳包）  
+注意下，[这个页面](http://www.cnblogs.com/lianmin/p/4232879.html)上的描述有问题
+POST参数：r:{"ptwebqq":"XXXX","clientid":XXXXX,"psessionid":"XXXXXX","key":""}  
+应为  
+POST参数：r={"ptwebqq":"XXXX","clientid":XXXXX,"psessionid":"XXXXXX","key":""}  
+别的没啥好说的。  
+如果直接循环post心跳包，程序会假死，所以，参考[这篇文章](http://blog.csdn.net/cyb331/article/details/8574233)，将心跳包改为异步获取。  
+然后添加了好友信息和群消息的获取，看到json就头疼，不知道怎么解决，网上搜索发现了[Json.NET](https://json.codeplex.com/)这个东西，明天再搞吧。  
+
+### 6月9日
+参考[这篇文章](http://blog.sina.com.cn/s/blog_a36e64d101014dma.html)完成了json的解析，总的来说，还算顺利。  
+把界面搞了搞，完善了下，然后整理代码。  
+在写判断掉线提示并重新允许登录时，遇到了问题：定时器中断里，在跨线程更新UI时，提示异常，查询发现，这是多线程的一个保护措施。由于嫌麻烦，直接关闭。  
+{% highlight csharp %}
+Control.CheckForIllegalCrossThreadCalls = false;
+{% endhighlight %}
+继续解析心跳包获取的消息，处理消息以外没啥困难。消息的JSON有一处是数组，而且元素没有名字，一时半会儿没有想到怎么搞。  
+好友信息解析时，获取真实QQ好老是报错{"retcode":100101}，询问大神，检查发现是Get请求没有设置referer，设置后完成。参考别人的代码发现应该这样写  
+{% highlight csharp %}
+public List<object> content;
+{% endhighlight %}
+我去。。完全没有想到用object。  
+查询群成员是的gcode我以为是gid，还得我去试了几次没成功。  
+发送消息时，格式、cookie、referer啥的都跟官方的一样，可是就是在获取回应的地方卡住，根本没反应。无奈时间已晚，睡了吧，明天搞。  
+
+### 6月10日
+原来昨天的问题是因为消息没有进行编码。。晕死  
+做了个测试Demo，但是卡得一x，简直不能忍。检查发现是资源没有回收，参考[这篇文章](http://www.crifan.com/fixed_problem_sometime_httpwebrequest_getresponse_timeout/)解决了。  
+然后就是各种测试，晚上决定做语库的时候发现不会用C#连接数据库，于是决定用PHP做语库及查询。  
+做了个添加语库的接口，就差不多该滚去睡觉了。[PHP部分的GitHub](https://github.com/hxl9654/RuiRuiQQWeb)  
+
+### 6月11日
+实现了语库及学习功能，没啥好说的。  
+[服务端程序](https://github.com/hxl9654/RuiRuiQQ/releases/tag/1.0)  [web端程序](https://github.com/hxl9654/RuiRuiQQWeb/releases/tag/1.0)
+其他功能等语库完善了再慢慢加上吧。
+
+### 6月12日
+接入了阿里云的OCS服务，效果挺不错，大大缩短了数据查询时间。然后稍微改了下算法，没啥好说的。  
+详见GitHub吧。
+
+### 6月13日-14日
+主要在搞词库的审核和学习功能的过滤，基本都是些体力活，没啥好说的，感兴趣的去Github吧。  
+在搞词库审核的时候，遇到个问题，具体的说就是当查询的关键字是中文时，查询会失败。检测半天发现是忘记设置编码格式了，我已经在编码上面摔好多次了。。。  
+{% highlight php %}
+mysql_query("set character set 'utf8'");[/php]
+{% endhighlight %}
+
+### 6月15日
+主要搞了汇率及天气接口和特权学习功能。  
+没啥好说的，都是体力活。  
+不得不吐槽，气象网的一个API停用了竟然不关闭接口，害得我以为抓到了，结果数据是错的。现在我是用的[这篇文章](http://blog.csdn.net/mad1989/article/details/8923303)介绍的第三个接口。  
+
+### 6月16-19日
+主要增加了个股市行情的功能和表情的收发，体力活，没啥好说的。  
+突然觉得，做到现在之后，这个项目太多体力活了，现在做的东西没啥技术含量，而我又暂时没有能力去做智能算法的2.0版。  
+先这样吧，再慢慢加些功能，智能版之后憋个大招再放。现在的主要精力可能放不放在这个上面了。
+
+### 6月22日
+发现老是登录半天后就掉线，代码103。而代码116时又返回了一个字符串，搜索结果与猜想一致：返回代码116时需要更新ptwebqq。于是，增加功能。  
+把心跳包的返回数据的处理从硬解修改为json解析，将获取过真实QQ的uin缓存，减少卡顿。  
+在查看日志的时候，发现群消息的info_seq字段与群号一致；重复测试，确定此为群号，增加群号获取功能。  
+
+### 6月24日
+将原有的群内控制分为7个开关，并将设置存储在了服务器的数据库中。
+
+### 6月25日
+之前增加发送表情功能的时候，把发送数据的json的一对括号移到了发送的数据生成的时候添加，而手动发送的时候却没有修改修改代码。无意中发现这个BUG，修改后恢复正常。  
+机器人的学习功能之前采用了GET方法，由于GET方法不支持长文字，所以改为了POST方法。而且之前没有对数据进行编码，造成存在特殊字符的文字无法进行学习，且存在SQL注入的安全隐患，所以在提交前增加来字符编码环节。  
+至此，这个项目再次告一段落。  
+
+### 7月5日
+增加了表情功能的开关。   
+修复了群管理员身份判断方法错误的BUG：mflag是单数即为管理员。   
+修改群配置获取权限，改为不须密码。
+### 7月6日
+添加了SQL语句的过滤。  
+{% highlight php %}
+$sql = "SELECT * FROM groupmanage WHERE gno = '".mysql_real_escape_string($_REQUEST[gno])."'  limit 1";
+{% endhighlight %}
+
+### 7月13日
+今天决定填一下之前的坑，大概列了下，有这些坑要填。  
+[![全部划掉了，哈哈哈！](https://tec.hxlxz.com/wp-content/uploads/2015/07/1436804342020-374x300.jpg)](https://tec.hxlxz.com/wp-content/uploads/2015/07/1436804342020.jpg)  
+
+> 全部划掉了，哈哈哈！  
+ 
+##### 一，天气。
+气象局又改接口了，害我抓不到数据。只好老老实实申请一个帐号来获取。  
+没啥好说的，纯体力活。  
+吐槽：1，这个API还说，原价300，现价0元。。  
+2，API的返回值名字敢再靠谱点吗？C0~C17,FA~FI，我去！还得对照表格来看！  
+
+##### 二，然后利用气象局的接口提供的其他信息，增加了城市信息查询功能，也没啥好说的。
+
+##### 三，修改了群设置的权限判断方式
+之前的判断是没调用一次群管理命令就重新获取一次管理员列表，这样速度实在捉鸡，而且之前在conf文件里设置的总管理员QQ也没有生效。于是，做了一些修改，获取管理员信息改成了只获取一次。  
+
+##### 四，修复了部分情况下消息有多余空行的BUG，其实也就是换了下之前的消息是否为空的判断方式，这个是当时写程序时没有考虑周到。
+
+##### 五，增加了自动登录和遇错自动重新登录
+之前搞自动登录时，我想偷懒，直接用了这样的语句。  
+{% highlight csharp %}
+buttonLogIn_Click(this, EventArgs.Empty);
+{% endhighlight %}
+但是发现并不行。于是，这次，我老老实实把登录和获取验证码的改写成函数，然后调用。这样就可以了。  
+
+##### 六，接入了雅虎汇率
+之前的那个汇率，查询数字货币倒是可以，但是查询法币就蛋疼了，于是，接入了雅虎的货币汇率查询API。  
+查了好几个帖子，发现雅虎的API太奇葩了，是用了一种类似SQL语句的东西搞的。但是我对这些并不感兴趣，查手册，搞定。  
+{% highlight html %}
+"https://query.yahooapis.com/v1/public/yql?q=select%20id,Rate%20from%20yahoo.finance.xchange%20where%20pair%20in%20%28%22USDCNY%22%29&env=store://datatables.org/alltableswithkeys&format=json"
+{% endhighlight %}
+
+##### 七，接入了百科查询
+本来想接入百度百科的，但是百度太坑爹，百科的URL是奇怪的数字，而且还专门做了防抓取。也许是我学艺不精，没有找到提供词条名查询百科的方法。  
+后面又想接入维基，但是。。。唉，河蟹啊。。水表得炸。  
+最后。。还是互动百科吧。。抓取了互动百科词条的描述字段并返回。  
+
+##### 八，允许白名单用户提交普通用户提交过且待审核的学习内容。  
+其实。。这本来是个很简单的事。。结果调了一个小时。。  
+问题出在，在判断到词条已经存在的时候，我移除了结束程序并提示Waitting的语句，但是没有发现在这之前，我已经关闭了数据库连接。于是，各种花式500就出现了。在用die语句慢慢从最前面往后面移动、一次次试着运行之后，终于发现了程序崩溃的地方，再检查了下，发现并改正了错误。我觉得这个是因为我的PHP没有正确地报错，只是报了个500，所以没有快速找到问题的所在。  
+
+##### 九，其他
+增加“开启”“开起”这种管理命令的支持，之前只有“启动”，导致很多管理员不能正确地配置机器人，做了人性化的调整。   
+当收到未知来源的群消息时，获取群信息不会重新获取之前已经获取过的群，提高了运行速度。  
+修复了当列表框没有选中项时，双击列表框，产生异常的问题。  
+修复了消息不能换行的BUG，这个应该是换行标志符的问题。  
+屏蔽了图片消息，避免大量的资源浪费。  
+于是，今天把之前的坑基本填完了。  
+
+### 7月15日
+有人输入法有问题，输入&时会误用中文的符号，于是，自动将中文的&转换我英文的。  
+删除了登录失败弹框的功能，方便自动创新登录。  
+
+### 7月16日
+在自动登录前判断是否需要验证码，如需要，则不自动登录。
+
+### 7月18日
+增加了日志系统，将使用情况记录在词库服务器上，来进行数据的统计。  
+突然发现wap版的百度百科的词条链接是wapbaike.baidu.com/item/词条名，于是，百度百科成功接入。  
+之前，判断特殊功能都是用的contain，现在改为了startwith，提高了效率。
+
+### 7月19日
+对百度百科的一些特殊格式做了处理。  
+小睿睿突然被封号，在小睿睿小窝群内启用小睿睿测试版的账号作为备胎。
+
+### 7月20日
+对小黄鸡返回的语句增加了敏感词过滤。  
+敏感词过滤时，发现一个敏感词，停止进行匹配，直接处理。  
+在登录时不再一一获取好友的信息，改为收到该好友的消息时进行获取并保存。  
+修复了获取回复时，分词并查重时，数组越界的BUG。  
+完成了[使用Wiki](https://github.com/hxl9654/RuiRuiQQ/wiki)的编写，并增加了帮助语句。  
+优化了百科功能。  
+修复了特权学习失效的BUG：原因是命令语句的判断改为了startwith，而“特权学习”的开头不是“学习”
+### 7月21日-7月22日
+更改目录结构，重写Readme。  
+小睿睿再次被封号，考虑买一个长Q龄的高等级账号来防止再次被封，但要等一个周的时间。
+
+
+## 参考资料  
+http://www.oicqzone.com/qqjiqiao/2014090219657.html  
+http://www.cnblogs.com/lianmin/p/4231411.html  
+http://sayln.com/code/csharp-smartqq-beginning.html  
+
+[![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+QQ聊天机器人项目日志 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+[在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=765)
