@@ -1,0 +1,102 @@
+---
+author: hxl
+comments: true
+date: 2015-07-05 08:43:04+00:00
+layout: post
+slug: summary-weekly-20150705
+title: 每周总结大集合-20150705～20150726
+tagline: summary-weekly-20150705-20150726
+wordpress_id: 819
+categories:
+- 技术之路
+- 推荐
+- 每周总结
+tags:
+- 总结
+---
+
+### 7月5日
+应长思的要求，给小睿睿增加了表情功能的开关。  
+虽然装了两个屏蔽插件，网站仍然调用了Google字体，再次搜索，根据[这篇文章](http://devework.com/google-fonts-in-wordpress.html)，在主题的function.php中添加如下代码，似乎有效。  
+
+{% highlight php %}
+function devework_replace_open_sans() {
+	wp_deregister_style('open-sans');
+	wp_register_style( 'open-sans', '//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600' );
+	wp_enqueue_style( 'open-sans');
+}
+add_action( 'wp_enqueue_scripts', 'devework_replace_open_sans' );
+add_action('admin_enqueue_scripts', 'devework_replace_open_sans');
+{% endhighlight %}
+
+然后解决代码高亮的问题，现在采用了插件SyntaxHighlighter Evolved。  
+搞了搞kali，apt-get update+upgrade跑了24小时才搞好。。。配置系统代理：vi /etc/environment  
+小睿睿突然火了。。。于是，又搞了搞。  
+
+### 7月7日
+工程实践啥的。。半小时搞定，不过代码才100行，我上哪里去凑够规定的250行啊。  
+设置小睿睿的白名单，昨天设置时，有一个人之前给过又取消了，我直接重新添加发现没效果，于是，删掉原来的那行数据。  
+配置SyntaxHighlighter，发现版本3并不好用，行号都是错位的，果断换2版。  
+一番配置后差不多了，但是配置为自动换行会发生代码跑出框外面，而不自动换行，代码每行有很长，这个问题还得解决。  
+
+### 7月13日
+对聊天机器人大填坑，详见[项目日志]({% post_url 2015-06-08-qqrobot %})。
+
+### 7月14日
+突发奇想去看看网站在Google上的情况，搜索后发现还好，然而又去百度看看，卧槽？被K了？
+
+### 7月22日
+今天拖延症终于缓解了，搞定了工程实践的代码和文档（虽然不知道能不能过），把一直说着要写的个人简历搞了，还把一直拖着的日志继续写了。  
+工程实践的代码我也是服了，一个如此简单的程序让我凑250行？想想都不可能。文档也是高端，给了一个真实的较大较使用的项目的文档模板。于是。。就那样呗，凑合改改。  
+然后，想起之前写简历的打算，用来MarkDown写了[一份简历](https://github.com/hxl9654/doc_public/blob/0f9f84d31b60491b89ee3298be4fca58132023ce/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.md)。  
+话说MarkDown的语法还真方便，简单易用，也方便记忆。没有多余的花花草草，把文档的本质做得很好，难怪现在那么多网站都用上了这种语言。  
+本以为大学的技术学习还过得充实，结果发现，能拿得出手的东西并没有多少。两个熟悉+一堆了解，加上3个项目，一页A4纸才占了一半。学习尚未成功，前路仍需努力啊。  
+
+### 7月23日
+整理了大一在实验室的活动，写了篇总结。  
+修改了简历关于技术熟练度的用词。  
+忍无可忍，终于打算解决google字体慢的问题，搜索后发现还是那些老东西，没什么新的。一番尝试后，发现[这篇文章](http://yusi123.com/3036.html)的方法一简直就是彻底，移除了之前按此方法在主题function.php添加的代码后，网站速度变得简直像飞机一样快。  
+晚上维护服务器，增强安全性。拖延症缓解的感觉就是好啊。  
+首先，把之前我服务器上的几个wordpress网站从同一个数据库中分离开。  
+原本，他们都在数据库wordpress中，现在，将他们分别移动到了各自的独立的数据库。  
+原本，他们都使用数据库root用户，这样很不安全，于是，将他们各种改用独立的用户。  
+然后，将各个网站的文件夹的权限修改，将统一的IUSER的权限移除。  
+然后建立各种的用户，设置为IUSERS组，并给予文件夹权限。在IIS管理器中，设置网站的匿名身份验证用户为这个用户。  
+这样，就算某个网站被入侵，黑客也不能直接访问其他的网站文件。  
+在设置用户的时候，遇到了一个麻烦：之前，我的服务器莫名其妙成了域管理器，导致很多操作收到了限制，而我目测用不上这个功能，于是搜索后发现可以删除。  
+在服务器角色管理中，准备删除Active Dictionary域服务，但提示要先降级域。  
+于是，去降级域。但是提示要先删除证书服务，于是去删除证书服务，但提示要先删除证书颁发机构管理工具。  
+于是，删除证书颁发机构管理工具，重启。  
+删除证书服务，重启。  
+降级域，重启。  
+删除Active Dictionary域服务，重启。  
+卧槽。。终于完成了。重启了4次！！！！我讨厌这个糟糕的设定！！就不能一次性配置完，然后一起重启吗？？？  
+好的。。突然想到明天还要工程实践考试。。。睡觉去。。。  
+
+### 7月24日
+上午去工程实践考试。   
+下午进行搞服务器安全加固，让张智大神帮忙。   
+主要在其他目录下添加了IIS_IUSERS组的拒绝。   
+修改了PHP的配置文件：  
+{% highlight php %}
+open_basedir = "D:\phpStudy64\WWW;D:\www\"
+disable_functions = "shell_exec,system,exec,passthru,show_source,get_cfg_var,dl"
+{% endhighlight %} 
+网上的教程真坑爹，竟然不告诉我这个需要用引号包起来。。。不过也怪我学艺不精。  
+然后去每个网站的目录下增加配置文件，进一步限制脚本的运行目录。  
+晚上突然发现小睿睿莫名其妙说之前语库中已经屏蔽掉的词。  
+各种看代码、调试，中途还发现OCS写入的字符串不能用转义后的，于是修改，并删除了确认检测。  
+最后发现，不知道怎么的，多出来段语句，会忽略使能参数，总结扫描结果并输出。删除后，修复完成。  
+打算搞个GitHub的Page做博客的另一个站，但是qwgg9654这个名字看上去不太好，于是，改名。  
+GitHub在Account settings中可以改名，改名后，会自动重定向之前的项目，但不会重定向之前的Page和用户界面。  
+改名后，就是各种在各个项目中修改出现的github网址，体力活，没啥好说的。  
+然后修改博客的链接。右边的那个GitHub链接倒好办，直接后台修改即可。但是每篇文章中的链接都得一一修改，这样并不靠谱。于是，我采用了机智的方法，参考之前修改wordpress域名时用的SQL语句：  
+{% highlight sql %}
+UPDATE wp_posts SET post_content = replace( post_content, 'https://github.com/qwgg9654', 'https://github.com/hxl9654' ) ; 
+{% endhighlight %}
+这样，一个命令就完成了。  
+然后，试着登录小睿睿。。。。竟然能用了。。。  
+
+[![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+每周总结-20150705 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+[在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=819)
