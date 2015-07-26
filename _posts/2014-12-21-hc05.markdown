@@ -1,0 +1,27 @@
+---
+author: hxl
+comments: true
+date: 2014-12-21 17:47:37+00:00
+layout: post
+slug: hc05
+title: HC05蓝牙征服记
+tagline: hc05-bluetooth
+wordpress_id: 102
+categories:
+- 单片机
+- 技术之路
+tags:
+- 单片机
+- 硬件
+- 通信
+---
+
+也没啥说的，就是淘宝卖家太坑爹，给的数据手册简直呵呵。模块的设计似乎也不是很合理————出厂波特率是38400，不知道是谁把他搞成9600再卖的。一恢复出厂设置（AT+ORGL）就呵呵了，害我搞了好久才发现问题的所在。  
+蓝牙的简单互联、互传算是搞定了，现在可以用它来进行多模块通信了，也算是学习了一种新的通信方式吧。（之前那个蓝牙插座不算，那个完全是傻瓜化模块）。  
+这次的一个算是经验的东西可以供大家参考：在多个模块同时工作的情况下，如果把主机模块设置为任意连接（AT+CMODE=1)，那将是一场灾难。。。好吧，没那么严重，但是这样的设置会带来很多麻烦————反正我是没找到办法让他乖乖地连上我指定的那个从机。我采用的解决方法是：AT+CMODE=0，AT+BIND=要连接的从机模块的MAC。然后，这样就搞定了。这次的蓝牙模块，算是搞了几个小时吧，比之前的WIFI好多了。  
+[![IMG_20141222_010523](https://tec.hxlxz.com/wp-content/uploads/2014/12/IMG_20141222_010523.jpg)](https://tec.hxlxz.com/wp-content/uploads/2014/12/IMG_20141222_010523.jpg)   
+接下来的几周，重修费保卫战即将拉开序幕，我得去保卫我的可怜的重修费了。  
+
+[![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+HC05蓝牙征服记 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+[在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=102)
