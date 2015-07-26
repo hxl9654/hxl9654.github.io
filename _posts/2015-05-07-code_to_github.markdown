@@ -55,5 +55,5 @@ github是好东西，之前一直没有去用，现在我决定得开始好好�
 [![2015-05-08T15-10-55.931Z](https://tec.hxlxz.com/wp-content/uploads/2015/05/2015-05-08T15-10-55.931Z.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/2015-05-08T15-10-55.931Z.png)  
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)   
-整理了之前的一些代码，上传到github 由 [何相龙](https://tec.hxlxz.com/?p=446) 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+整理了之前的一些代码，上传到github 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
 [在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=446)

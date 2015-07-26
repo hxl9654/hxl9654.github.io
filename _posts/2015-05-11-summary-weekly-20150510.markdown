@@ -1,0 +1,59 @@
+---
+author: hxl
+comments: true
+date: 2015-05-11 19:16:29+00:00
+layout: post
+slug: summary-weekly-20150510
+title: 每周总结-20150510
+tagline: summary-weekly-20150510
+wordpress_id: 473
+categories:
+- 技术之路
+- 每周总结
+tags:
+- 总结
+---
+
+5月11日，在学校ACM热身赛OJ上玩了玩，被虐哭。连最拿手的模拟、爆搜都敲不出来了。  
+[![20150511031052](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150511031052.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150511031052.png)  
+
+[![20150511031228](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150511031228.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150511031228.png)  
+
+当天听说又有一块不幸的硬盘挂了，赶紧再次备份数据，并检查备份数据的可用性  
+
+### 5月12日
+把之前的DS18B20的函数模块规范化了，作为我的第一个能拿的出手的模块发布到了[github](https://github.com/hxl9654/EasyC51/tree/master/DS18B20)上。顺便写了个Demo程序。这个模块作为EASYC51项目的一部分。  
+[![2015-05-15T14-55-53.717Z](https://tec.hxlxz.com/wp-content/uploads/2015/05/2015-05-15T14-55-53.717Z.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/2015-05-15T14-55-53.717Z.png)  
+
+### 5月13日、14日
+继续做EasyC51的模块，感觉这些自己用着很简单的东西，如果要做成规范化的程序模块，要让别人能看懂，还是略有难度啊。  
+把STC15的数据手册阅读了一遍，觉得STC公司的确是一个做实事的公司，STC15把之前的89C51单片机的很多不实用的功能去掉了，又加上了自己的实用的新功能，总的来说，比STC12强大不少。  
+实在受不了前面的垃圾插座了，好多洞都有问题。去买了个公牛的，拆开一看，尼玛，质量就是好，用料这么扎实。  
+[![IMG_20150514_142418](https://tec.hxlxz.com/wp-content/uploads/2015/05/IMG_20150514_142418.jpg)](https://tec.hxlxz.com/wp-content/uploads/2015/05/IMG_20150514_142418.jpg)  
+买的Arduino也到了，试了下，这货太方便了，觉得这货不能经常用，要不得变懒。坑爹长思本来说不要，结果我买到了，还是拿了一个去。  
+[![IMG20150514143606](https://tec.hxlxz.com/wp-content/uploads/2015/05/IMG20150514143606.jpg)](https://tec.hxlxz.com/wp-content/uploads/2015/05/IMG20150514143606.jpg)  
+
+### 5月15日
+受长思大法的屌炸天网站主题的刺激，把我的网站的主题换了，现在网站的界面比之前漂亮多了，而且这个主题还带了很多我需要而之前的主题没有的功能，总的来说，还是不错。  
+试了几个主题，就这个比较满意，主要修改了社交按钮，改成了github、邮箱啥的。其他的基本没有改。  
+改这个没啥技术含量，也就是在functions.php和options.php改了几行代码，后来为了正确地调用Font Awesome的一些图标（主题自带的图表文件不全），修改了header.php，加了行引用。觉得Font Awesome这个开源项目很好用，各种图标一应俱全，而且调用相当方便。  
+[![1](https://tec.hxlxz.com/wp-content/uploads/2015/05/1.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/1.png)  
+
+[![2](https://tec.hxlxz.com/wp-content/uploads/2015/05/2.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/2.png)  
+
+### 5月16日
+睡了一上午，精神好多了，下午去学校的程序设计大赛玩，ACM赛制，只不过改成了个人赛，题水得一X，比热身赛的还水。一个小时不到，AK了，RANK1。  
+[![20150516173410](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150516173410.png)](https://tec.hxlxz.com/wp-content/uploads/2015/05/20150516173410.png)  
+算法这些东西，算是丢了很久不搞了，幸好今天的题根本没有考算法，不然绝对得被虐得很惨。
+争取决赛去拿个随便什么奖回来吧，大学以来，还没拿过什么奖状呢。  
+晚上，继续陪着一点也不萌的妹纸调无线测温，话说这名字起的真扯淡，明明就是把测得的温度值通过红外信号传输到主机上显示，怎么就成了无线测温。。。不过还算顺利。  
+简单粗暴的大功率红外发射，效果很好，KISS原则再一次展示了他的威力。  
+
+### 最后再总结两句
+比起上一周，这周似乎没有做太多的事。还是感觉很累，也许是最近实验室空气不怎么好的缘故吧。  
+这个状态肯定是不行的，得好好调整状态，投入接下来的学习中了。  
+抓紧时间，多做实事，脚踏实地，稳步向前。  
+
+[![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+每周总结-20150510 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
+[在Wordpress站上浏览本文](https://tec.hxlxz.com/?p=473)
