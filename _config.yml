@@ -18,6 +18,17 @@ author :
   feed : rss.xml
   mail : QWGG9654@gmail.com
 
+# divide page config
+paginate : 5
+paginate_path : "/page:num/"
+
+# plugins
+gems:
+  - jekyll-mentions
+  - jemoji
+  - jekyll-redirect-from
+  - jekyll-sitemap
+
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
 # Most places will/should use BASE_PATH to make the urls
@@ -75,9 +86,7 @@ JB :
   tags_path : /tags.html
   atom_path : /atom.xml
   rss_path : /rss.xml
-  # 分页设置
-  paginate: 5
-  paginate_path: "/page:num/"
+
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.

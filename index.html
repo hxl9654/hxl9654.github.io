@@ -1,0 +1,53 @@
+---
+layout: page
+title: 蜀相记
+tagline: Chase the Excellence, Success will follow you.  
+---
+{% include JB/setup %}
+
+<p>你好，欢迎来到我在GitHub上的博客。<br/>
+我是一只热爱编程的程序猿，不过现在仍然学艺不精，距离大牛还很远。<br/>
+本博客还有<a href="https://tec.hxlxz.com">wordpress版</a>，留言、互动可以去那里。</p>
+  
+<h2> 置顶博文 </h2>
+<h3><a href="{% post_url 2014-12-01-list-of-valid-errors %}">查错备忘录</a></h3>
+
+<h2> 我的博文 </h2>
+{% for post in paginator.posts %}
+  <h3><a href="{{ post.url }}">{{ post.title }}</a>{{ post.date }}</h3>
+  <!--
+  <div class="content">
+    {{ post.excerpt }}
+  </div>
+  !-->
+{% endfor %}
+
+<div id="pagination">
+<div class="pagenavi">
+<span class="page_number">第{{paginator.page}}页/共{{paginator.total_pages}}页</span>
+<a href="/">第一页</a>
+{% if paginator.previous_page %}
+{% if paginator.previous_page == 1 %}
+<a href="/" class="current"><<前一页</a>
+{% else %}
+<a href="/page{{paginator.previous_page}}"><<前一页</a>
+{% endif %}
+{% else %}
+<span><<前一页</span>
+{% endif %}
+{% for count in (2..paginator.total_pages) limit:8 %}
+{% if count == paginator.page %}
+<span class="current-page">{{count}}</span>
+{% else %}
+<a href="/page{{count}}">{{count}}</a>
+{% endif %}
+{% endfor %}
+
+{% if paginator.next_page %}
+<a href="/page{{paginator.next_page}}">后一页>></a>
+{% else %}
+<span>后一页>></span>
+{% endif %}
+<a href="/page{{paginator.total_pages}}">最后一页</a>
+</div>
+</div>
