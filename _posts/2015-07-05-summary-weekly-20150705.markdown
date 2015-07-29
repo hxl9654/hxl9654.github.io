@@ -98,7 +98,8 @@ UPDATE wp_posts SET post_content = replace( post_content, 'https://github.com/qw
 然后，试着登录小睿睿。。。。竟然能用了。。。  
 
 ### 7月25日-7月30日
-[搭建博客的GitHub版]({% post_url 2015-07-25-setup-blog-on-github %})，继续完善[RuiRuiQQ机器人]({% post_url 2015-06-08-qqrobot %})。
+[搭建博客的GitHub版]({% post_url 2015-07-25-setup-blog-on-github %})，继续完善[RuiRuiQQ机器人]({% post_url 2015-06-08-qqrobot %})。  
+修复了查寝系统的XSS漏洞和SQL语句未过滤的漏洞。  
 
 [![知识共享许可协议](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
 每周总结-20150705 由 [何相龙]() 创作，采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。  
