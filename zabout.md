@@ -1,4 +1,7 @@
 ---
+redirect_from:
+  - /about
+  - /about.html
 layout: page
 slug: about
 title: 关于

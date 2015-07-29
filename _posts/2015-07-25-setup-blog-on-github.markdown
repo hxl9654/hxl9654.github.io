@@ -45,6 +45,25 @@ set http_proxy=http://proxy.yourname.com:8080
 
 找到[这篇文章](http://cn.yizeng.me/2013/05/10/setup-jekyll-on-windows/)，但是尝试操作后发现没有效果。不过，在故障排除第3点描述的错误信息与我类似，说是PATH变量的问题。于是，尝试将已经添加进用户变量PATH中的python目录复制到系统变量，问题解决。    
 迁移完文章，可以收工了。  
+突然发现分页功能还没做，于是，再次按<a href="http://jekyllrb.com/docs/pagination/" target="_blank">官网上给的方法</a>尝试。跟之前一样，仍然无果。
+
+想来应该是配置文件的问题。重写一下试试。我去。。坑爹呢！配置的参数前面不能有空格！好吧，服了，改正，再按官网的方法，行了。  
+但是，官网的例子是把文章的全部内容都显示出了了，这样首页会很坑爹。于是，把content改成excerpt，稍微好了点，但是图片还是会出来。  
+
+想到GitHub禁用了插件，但是提供了几个官方插件，查询可知，需要安装github-pages  
+{% highlight c %}
+gem install github-pages  
+{% endhighlight %}  
+然后。。。就没有然后了。。为什么我的本地环境直接跪了？  
+一番搜索后，发现了http://www.91去掉我r.net/ask/28530053.html（这个网站被标记为恶意网站！），得到以下方法，修复成功。
+{% highlight c %}
+gem uninstall psych 2.0.13
+{% endhighlight %} 
+至于首页的摘要，网上搜索得到这个代码，去掉了html标签，效果不错。
+{% highlight c %}
+两个花括号 post.excerpt | strip_html | strip_newlines | truncate:250 两个反花括号 
+{% endhighlight %}
+
 做几个笔记吧  
 内部链接：{百分号 post_url 文件名 百分号}  
 如：{百分号 post_url 2014-12-01-list-of-valid-errors 百分号}  
