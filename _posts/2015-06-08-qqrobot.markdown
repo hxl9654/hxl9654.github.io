@@ -211,6 +211,10 @@ buttonLogIn_Click(this, EventArgs.Empty);
 当群配置表中没有信息时，发送提示语句。  
 尝试增加textBoxResiveMessage.MaxLength，避免因记录过多而导致程序异常。
 
+### 7月31日
+增加免密码的语库学习接口，方便他人添加语聊。  
+增加使用日志，记录机器人QQ和管理员QQ。  
+
 ## 参考资料  
 http://www.oicqzone.com/qqjiqiao/2014090219657.html  
 http://www.cnblogs.com/lianmin/p/4231411.html  
