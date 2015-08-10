@@ -8,7 +8,7 @@ title: GitHub博客搭建记
 tagline: setup-blog-on-github
 wordpress_id: 922
 categories:
-- 杂谈
+- 技术之路
 ---
 
 突发奇想，打算把博客在GitHub上搞个分站，于是说干就干。  
